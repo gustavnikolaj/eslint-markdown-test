@@ -1,6 +1,6 @@
 {
   "name": "eslint-markdown-test",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Write tests for eslint configurations in markdown.",
   "main": "index.js",
   "scripts": {
