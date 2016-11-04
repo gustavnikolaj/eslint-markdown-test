@@ -1,0 +1,3 @@
+```js
+var foo = bar;
+```
