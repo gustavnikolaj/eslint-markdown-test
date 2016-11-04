@@ -24,6 +24,11 @@ describe('findCodeBlocks', function () {
             { type: 'js' }
         ]);
     });
+    it('should be able to find a single block with multiple lines', function () {
+        return expect('multiple-lines', 'to yield code blocks', [
+            { type: 'js' }
+        ]);
+    });
     it('should be able to find a block with an offset', function () {
         return expect('offsetting-description', 'to yield code blocks', [
             { type: 'js', lineOffset: 3 }
@@ -41,12 +46,19 @@ describe('findCodeBlocks', function () {
             }
         ]);
     });
-    it.skip('should be able to find a codeblock with a template string', function () {
-        // TODO: Fix parsing of examples with template strings
+    it('should be able to find multiple code examples in the same file', function () {
+        return expect('multiple-mixed', 'to yield code blocks', [
+            { type: 'js' },
+            { type: 'js' },
+            { type: 'js', output: { type: 'output' } },
+            { type: 'js' }
+        ]);
+    });
+    it('should be able to find a codeblock with a template string', function () {
         return expect('template-string', 'to yield code blocks', [
             {
                 type: 'js',
-                body: 'var foo = `bar`;'
+                body: 'var foo = `bar`;\n'
             }
         ]);
     });
