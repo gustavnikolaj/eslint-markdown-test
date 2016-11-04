@@ -57,5 +57,5 @@ describe('buildTestCase', function () {
             "});",
             "});"
         ].join('\n'));
-    })
+    });
 });
