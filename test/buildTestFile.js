@@ -18,6 +18,13 @@ describe('buildTestFile', function () {
         return expect(buildTestFile('foo', 'simple.md'), 'to equal', [
             "var expect = require('" + require.resolve('unexpected') + "').clone();",
             "var eslintConfig = require('./path/to/eslintConfig')",
+            "var eslint = require('eslint');",
+            "if (Array.isArray(eslintConfig.plugins)) {",
+            "    var engine = new eslint.CLIEngine(eslintConfig);",
+            "    eslintConfig.plugins.forEach(function (plugin) {",
+            "        engine.addPlugin(plugin, require('eslint-plugin-' + plugin));",
+            "    });",
+            "}",
             buildTestFile.lintText.toString(),
             "describe('simple.md', function () {",
             '{testCaseFor: foo}',
